@@ -8,11 +8,17 @@ python src/run.py
 
 ## Data
 
+
 ## Config
+Edit `config/config.yaml`:
+
+```yaml
 python: "3.10"
 random_seed: 42
 confidence_min: 0.6
-use_sample_data: true
+use_sample_data: false
+sample_fraction: 0.3
+
 
 
 
@@ -44,9 +50,8 @@ reports/creatives.json
 reports/report.md
 
 ## Observability
-This project does not currently include Langfuse or external monitoring.
-However, the repository structure includes folders (`logs/`, `reports/`) to support
-future observability improvements such as JSON logs or performance trace exports.
+- A JSON trace of each run is written to `logs/pipeline_trace.json`.
+- Langfuse is not integrated in this version, but the logs structure can be extended to external tools.
 
 
 ## Release
@@ -54,4 +59,10 @@ Version: v1.0 — Final Assignment Submission
 Core features implemented
 Automatic pipeline generation complete
 
+
 ## Self-Review
+- Verified that the agent pipeline (Planner → Analyst → Evaluator) runs end-to-end.
+- Confirmed that `reports/insights.json`, `reports/creatives.json` and `reports/evaluation.json` are generated.
+- Ensured the structure matches the provided template (src/, data/, config/, logs/, reports/, prompts/, tests/).
+- Identified future improvements: deeper config usage, real LLM prompts, Langfuse integration and unit tests.
+
