@@ -1,0 +1,23 @@
+[
+    {
+        "platform": "Facebook",
+        "audience_type": "Retargeting",
+        "creative_type": "UGC",
+        "recommendation": "Use real customer testimonials showing comfort and fit for men\u2019s premium line.",
+        "example_copy": "Real men choose real comfort \u2014 see why our premium collection is loved in the UK!"
+    },
+    {
+        "platform": "Facebook",
+        "audience_type": "Retargeting",
+        "creative_type": "UGC",
+        "recommendation": "Include before/after comfort comparisons and short clips of motion to highlight breathability.",
+        "example_copy": "Sweat-wicking comfort that moves with you \u2014 upgrade your essentials."
+    },
+    {
+        "platform": "Facebook",
+        "audience_type": "Broad",
+        "creative_type": "Video",
+        "recommendation": "Use lifestyle videos featuring active men in UK settings to attract new customers.",
+        "example_copy": "Comfort built for your day \u2014 from commute to gym to night out."
+    }
+]
