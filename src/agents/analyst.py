@@ -4,7 +4,9 @@ import pandas as pd
 
 
 class AnalystAgent:
-
+     """
+    Loads the Facebook ads dataset, computes metrics & generates insights.
+    """
     def __init__(self,
                  data_path: str = "data/synthetic_fb_ads_undergarments.csv",
                  reports_dir: str = "reports"):
