@@ -1,27 +1,24 @@
-from pathlib import Path
 import pandas as pd
 
-
 class DataAgent:
-    """
-    Responsible only for loading and basic preprocessing of the dataset.
-    """
+    def __init__(self, config):
+        self.config = config
 
-    def __init__(self, data_path: str = "data/synthetic_fb_ads_undergarments.csv"):
-        self.data_path = Path(data_path)
+    def load_data(self):
+        if self.config.get("use_sample_data"):
+            path = self.config["data_path_sample"]
+        else:
+            path = self.config["data_path_full"]
+        return pd.read_csv(path)
 
-    def load(self) -> pd.DataFrame:
-        if not self.data_path.exists():
-            raise FileNotFoundError(f"Dataset not found at {self.data_path}")
-        df = pd.read_csv(self.data_path)
+    def summarize(self, df):
+        summary = df.groupby("campaign_name").agg({
+            "impressions": "sum",
+            "clicks": "sum",
+            "spend": "sum",
+            "revenue": "sum"
+        })
+        summary["CTR"] = summary["clicks"] / summary["impressions"]
+        summary["ROAS"] = summary["revenue"] / summary["spend"]
 
-        # Basic cleaning
-        df = df.copy()
-        # Standardize column names if needed
-        df.columns = [c.strip() for c in df.columns]
-
-        # Drop obviously broken rows (zero impressions & zero spend)
-        if "impressions" in df.columns and "spend" in df.columns:
-            df = df[~((df["impressions"] == 0) & (df["spend"] == 0))]
-
-        return df
+        return summary.reset_index().to_dict(orient="records")
