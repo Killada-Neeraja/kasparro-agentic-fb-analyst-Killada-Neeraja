@@ -1,56 +1,37 @@
-from typing import List, Dict
+import json
 
+class CreativeGenerator:
+    def __init__(self, llm_client, prompts_dir, config):
+        self.llm_client = llm_client
+        self.prompts_dir = prompts_dir
+        self.config = config
 
-class CreativeGeneratorAgent:
-    """
-    Generates creative improvement suggestions, especially for underperforming (low CTR / low ROAS) segments.
-    """
+    def generate_creatives(self, underperforming_ads, insights):
+        """
+        underperforming_ads: list of dicts with campaign/ad names and metrics
+        insights: dict from InsightAgent.generate_insights
+        """
+        prompt = self._load_prompt("creative_prompt.md")
 
-    def __init__(self):
-        pass
+        payload = json.dumps({
+            "underperforming_ads": underperforming_ads,
+            "insights": insights.get("insights", [])
+        })
 
-    def generate(self, insights: Dict, roas_hypothesis: Dict) -> List[Dict]:
-        creatives: List[Dict] = []
+        full_prompt = f"{prompt}\n\nDATA:\n{payload}"
 
-        best_creative_type = insights.get("best_creative_type", "UGC")
-        best_country = insights.get("best_country_by_cvr", "UK")
-        best_audience = insights.get("best_audience_type", "Retargeting")
-        hypo_text = roas_hypothesis.get("hypothesis", "")
-        confidence = roas_hypothesis.get("confidence", 0.0)
+        response = self.llm_client.generate(full_prompt)
 
-        creatives.append(
-            {
-                "platform": "Facebook",
-                "audience_type": best_audience,
-                "creative_type": best_creative_type,
-                "hypothesis_context": hypo_text,
-                "hypothesis_confidence": confidence,
-                "recommendation": (
-                    "Lean into the highest performing creative type and audience. "
-                    "Adapt messaging to address ROAS decline causes (e.g., ad fatigue, rising CPC)."
-                ),
-                "example_copy": (
-                    "UK men are sticking with comfort — refresh your UGC creatives with shorter hooks, "
-                    "clearer value props, and stronger CTAs to fight rising CPC."
-                ),
+        try:
+            result = json.loads(response)
+        except json.JSONDecodeError:
+            result = {
+                "ideas": [],
+                "error": "Invalid JSON from LLM"
             }
-        )
 
-        creatives.append(
-            {
-                "platform": "Instagram",
-                "audience_type": "Broad",
-                "creative_type": "Video",
-                "hypothesis_context": hypo_text,
-                "hypothesis_confidence": confidence * 0.8,
-                "recommendation": (
-                    "Test broader reach creatives on Instagram with fast-moving visuals and brand recall focus."
-                ),
-                "example_copy": (
-                    "Not just another undergarment brand. Show the switch moment: "
-                    "before vs after wearing our premium modal collection."
-                ),
-            }
-        )
+        return result
 
-        return creatives
+    def _load_prompt(self, filename):
+        with open(f"{self.prompts_dir}/{filename}", "r", encoding="utf-8") as f:
+            return f.read()
