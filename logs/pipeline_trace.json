@@ -1,0 +1,17 @@
+{
+    "query": "Analyze ROAS drop",
+    "config": {
+        "python": "3.10",
+        "random_seed": 42,
+        "confidence_min": 0.6,
+        "use_sample_data": false,
+        "sample_fraction": 0.3
+    },
+    "evaluation": {
+        "missing_keys": [],
+        "num_creatives": 2,
+        "has_ugc": false,
+        "hypothesis_confidence": 0.0,
+        "status": "pass"
+    }
+}

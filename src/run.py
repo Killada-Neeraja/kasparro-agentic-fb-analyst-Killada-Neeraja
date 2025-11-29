@@ -39,7 +39,7 @@ def main():
 
     planner = PlannerAgent()
     analyst = AnalystAgent()
-    evaluator = EvaluatorAgent(config=config)
+    evaluator = EvaluatorAgent()
 
     print("\n[PLAN]")
     for step in planner.plan()["steps"]:
@@ -58,7 +58,7 @@ def main():
         print("-", c.get("example_copy", ""))
 
     print("\n[EVALUATOR] Evaluating with confidence_min =", config["confidence_min"])
-    evaluation = evaluator.evaluate(insights)
+    evaluation = evaluator.evaluate(insights, creatives)
     print("Evaluation:", evaluation)
 
     # Simple observability trace

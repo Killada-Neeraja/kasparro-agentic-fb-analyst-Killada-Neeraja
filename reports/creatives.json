@@ -2,22 +2,15 @@
     {
         "platform": "Facebook",
         "audience_type": "Retargeting",
-        "creative_type": "UGC",
-        "recommendation": "Use real customer testimonials showing comfort and fit for men\u2019s premium line.",
-        "example_copy": "Real men choose real comfort \u2014 see why our premium collection is loved in the UK!"
+        "creative_type": "Image",
+        "recommendation": "Refresh top-performing creatives with new hooks and stronger CTAs to fight ad fatigue and sustain ROAS.",
+        "example_copy": "Men in UK are choosing all-day comfort. Show real customers switching to our premium collection with a clear \"Shop Now\" CTA."
     },
     {
-        "platform": "Facebook",
-        "audience_type": "Retargeting",
-        "creative_type": "UGC",
-        "recommendation": "Include before/after comfort comparisons and short clips of motion to highlight breathability.",
-        "example_copy": "Sweat-wicking comfort that moves with you \u2014 upgrade your essentials."
-    },
-    {
-        "platform": "Facebook",
+        "platform": "Instagram",
         "audience_type": "Broad",
         "creative_type": "Video",
-        "recommendation": "Use lifestyle videos featuring active men in UK settings to attract new customers.",
-        "example_copy": "Comfort built for your day \u2014 from commute to gym to night out."
+        "recommendation": "Use short vertical videos highlighting before / after comfort, plus price anchoring to drive clicks.",
+        "example_copy": "Not just another undergarment. In 5 seconds, show the difference: old vs new, then flash the limited-time offer."
     }
 ]
