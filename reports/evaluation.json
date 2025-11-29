@@ -1,7 +1,12 @@
 {
-    "missing_keys": [],
-    "num_creatives": 2,
-    "has_ugc": false,
+    "missing_keys": [
+        "best_platform_by_revenue",
+        "best_country_by_cvr",
+        "best_creative_type",
+        "best_audience_type"
+    ],
+    "num_creatives": 1,
+    "has_ugc": true,
     "hypothesis_confidence": 0.0,
-    "status": "pass"
+    "status": "needs_improvement"
 }
