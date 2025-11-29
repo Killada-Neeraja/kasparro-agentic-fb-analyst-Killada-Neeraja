@@ -39,7 +39,7 @@ def main():
 
     planner = PlannerAgent()
     analyst = AnalystAgent()
-   evaluator = EvaluatorAgent()
+    evaluator = EvaluatorAgent(config=config)
 
     print("\n[PLAN]")
     for step in planner.plan()["steps"]:
