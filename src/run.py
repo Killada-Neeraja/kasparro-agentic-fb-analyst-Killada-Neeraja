@@ -58,7 +58,7 @@ def main():
         print("-", c.get("example_copy", ""))
 
     print("\n[EVALUATOR] Evaluating with confidence_min =", config["confidence_min"])
-    evaluation = evaluator.evaluate(insights, creatives)
+    evaluation = evaluator.evaluate(insights)
     print("Evaluation:", evaluation)
 
     # Simple observability trace
